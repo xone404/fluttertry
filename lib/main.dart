@@ -1,5 +1,4 @@
 import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 
@@ -9,6 +8,7 @@ void main() {
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -20,6 +20,9 @@ class MyApp extends StatelessWidget {
   }
 }
 
+// =======================
+// Login Page
+// =======================
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
 
@@ -108,6 +111,9 @@ class _LoginPageState extends State<LoginPage> {
   }
 }
 
+// =======================
+// Image Upload Page
+// =======================
 class ImageUploadPage extends StatefulWidget {
   const ImageUploadPage({super.key});
 
@@ -132,36 +138,42 @@ class _ImageUploadPageState extends State<ImageUploadPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Text('Upload Gambar')),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Card(
-          elevation: 4,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(12),
-          ),
-          child: Padding(
-            padding: const EdgeInsets.all(20),
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                _selectedImage != null
-                    ? Image.file(_selectedImage!, height: 200)
-                    : const Text('Belum ada gambar yang dipilih.'),
-                const SizedBox(height: 20),
-                ElevatedButton.icon(
-                  onPressed: () => _pickImage(ImageSource.gallery),
-                  icon: const Icon(Icons.image),
-                  label: const Text('Pilih dari Galeri'),
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            const SizedBox(height: 40),
+            Center(
+              child: Card(
+                elevation: 4,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(12),
                 ),
-                const SizedBox(height: 10),
-                ElevatedButton.icon(
-                  onPressed: () => _pickImage(ImageSource.camera),
-                  icon: const Icon(Icons.camera_alt),
-                  label: const Text('Ambil dari Kamera'),
+                child: Padding(
+                  padding: const EdgeInsets.all(20),
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      _selectedImage != null
+                          ? Image.file(_selectedImage!, height: 200)
+                          : const Text('Belum ada gambar yang dipilih.'),
+                      const SizedBox(height: 20),
+                      ElevatedButton.icon(
+                        onPressed: () => _pickImage(ImageSource.gallery),
+                        icon: const Icon(Icons.image),
+                        label: const Text('Pilih dari Galeri'),
+                      ),
+                      const SizedBox(height: 10),
+                      ElevatedButton.icon(
+                        onPressed: () => _pickImage(ImageSource.camera),
+                        icon: const Icon(Icons.camera_alt),
+                        label: const Text('Ambil dari Kamera'),
+                      ),
+                    ],
+                  ),
                 ),
-              ],
+              ),
             ),
-          ),
+          ],
         ),
       ),
     );
